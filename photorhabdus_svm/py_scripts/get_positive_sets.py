@@ -26,13 +26,16 @@ def collect_genes(gb):
     for record in seq_record:
         if record.name in df:
             print(record.name)
+
+            # build 2D list of orthogroups and genes
             orthogroups = list(df[record.name])
             for x in range(40):
                 if type(orthogroups[x]) == str:
                     effector[x] += orthogroups[x].split(',')
-            
+
+            # save contigs that contain the relevant genes
             with open(record.name + '.gb', 'w') as output_handle:
-                SeqIO.write(record, output_handle, 'fasta')
+                SeqIO.write(record, output_handle, 'genbank')
 
 for gb in os.listdir(photorhabdus):
     if 'gbff' in gb:

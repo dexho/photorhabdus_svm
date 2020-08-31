@@ -5,10 +5,10 @@ import pandas as pd
 
 model = SVC()
 
-neg_train = pd.read_pickle('/Users/desho/Desktop/photorhabdus_svm/testpI/negative_training_genes.pkl')
-neg_test = pd.read_pickle('/Users/desho/Desktop/photorhabdus_svm/testpI/negative_testing_genes.pkl')
-pos_train = pd.read_pickle('/Users/desho/Desktop/photorhabdus_svm/testpI/positive_training_genes.pkl')
-pos_test = pd.read_pickle('/Users/desho/Desktop/photorhabdus_svm/testpI/positive_testing_genes.pkl')
+neg_train = pd.read_pickle('/Users/desho/Desktop/photorhabdus_svm/testSS/negative_training_ss.pkl')
+neg_test = pd.read_pickle('/Users/desho/Desktop/photorhabdus_svm/testSS/negative_testing_ss.pkl')
+pos_train = pd.read_pickle('/Users/desho/Desktop/photorhabdus_svm/testSS/positive_training_ss.pkl')
+pos_test = pd.read_pickle('/Users/desho/Desktop/photorhabdus_svm/testSS/positive_testing_ss.pkl')
 
 frames = [neg_train, pos_train]
 df = pd.concat(frames)
@@ -22,11 +22,6 @@ df = shuffle(df)
 X_test = df.drop(['target'], axis = 'columns')
 y_test = df.target
 
-
-print(X_train)
-print(X_test)
-print(y_train)
-print(y_test)
 
 model.fit(X_train, y_train)
 print(model.score(X_test, y_test))
